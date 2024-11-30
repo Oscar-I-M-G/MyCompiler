@@ -18,6 +18,14 @@ macOS or Linux System with an x64 processor
 
 if apple silicon emulate x64 with Rosetta 2 , clang 
 
+## Windows
+Use windows subsystem for linux (WSL)
+after installing use the terminal to open 
+```cmd
+wsl -d ubuntu
+
+```
+using ubuntu in my case
 
 ## MacOs
 To install rosetta 2
