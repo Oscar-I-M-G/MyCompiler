@@ -5,4 +5,10 @@ Working on the compilerDriver
 
 ### Lexor
 
-###
+### Parser
+
+### Assembly generation
+
+### Code emission
+
+
