@@ -33,14 +33,14 @@ if len(sys.argv) != 2 or not sys.argv[1].strip():
 input_file = sys.argv[1].strip()
 
 file_name = input_file.split("/")[-1].split(".")[-2]
-preprocessed_file = file_name + ".i"
-assembly_file = file_name + ".s"
-
+file_destination = "/".join(input_file.split("/")[:-1])+ "/"
+preprocessed_file = file_destination+file_name + ".i"
+assembly_file = file_destination+file_name + ".s"
 
 firstCommand = f"gcc -E -P {input_file} -o {preprocessed_file}"
 
-secondCommand = f"gcc -S -O -fno-asynchronous-unwind-tables -fcf-protection=none {preprocessed_file}"
-thirdCommand = f"gcc {assembly_file} -o {file_name}"
+secondCommand = f"gcc -S -O -fno-asynchronous-unwind-tables -fcf-protection=none {preprocessed_file} -o {assembly_file}"
+thirdCommand = f"gcc {assembly_file} -o {file_destination}{file_name}"
 
 splitFirstCommand = shlex.split(firstCommand)
 splitSecondCommand = shlex.split(secondCommand)
@@ -52,12 +52,13 @@ subprocess.run(splitFirstCommand)
 ## Second command
 subprocess.run(splitSecondCommand)
 
+
 ## remove the preprocess file
 subprocess.run(["rm", f"{preprocessed_file}"])
 
 ## Third command
 subprocess.run(splitThirdCommand)
 
-result = subprocess.run(["./"+file_name])
+result = subprocess.run([file_destination+file_name])
 
 print(result.returncode)
