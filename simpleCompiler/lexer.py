@@ -16,10 +16,10 @@ TOKENS = [
 ]
 
 
-def lookup(s, tokens):
+def lookup(s):
     longest_match = None
     longest_value = None
-    for pattern, value in tokens:
+    for pattern, value in TOKENS:
         match = re.match(pattern, s)
         if match:
             ##print(f"-----Found-----{value}")
@@ -29,8 +29,7 @@ def lookup(s, tokens):
             
     return longest_value if longest_match else 'Error not found'
 
-## TESTING file path
-file_location = r'simpleCompiler/test/return2.c'
+
 def read_file(file_path):
     with open(file_path,'r') as file:
         lines = file.readlines()
@@ -56,12 +55,12 @@ def split_by_delimeters(file):
     return split_string
 
 ## Tokenize
-def tokenize(filtered_file,tokens):
+def tokenize(filtered_file):
     tokenized_file = []
     for line in filtered_file:
         tokenized_line = []
         for item in line:
-            tokenized_item = lookup(item,tokens)
+            tokenized_item = lookup(item)
             tokenized_line.append(tokenized_item)
         tokenized_file.append(tokenized_line)
     return tokenized_file 
@@ -77,14 +76,9 @@ while input isn't empty:
         remove matching substring from startof input
 '''
 
-
-##print(lookup("inter}",TOKENS))
-
-file_opened = read_file(file_location)
-
-print(file_opened)
-file_filtered = split_by_delimeters(file_opened)
-print(file_filtered)
-file_tokenized = tokenize(file_filtered, TOKENS)
-print(file_tokenized)
-
+def main(file):
+    file_lines = read_file(file)
+    file_split_filtered = split_by_delimeters(file_lines)
+    file_tokenized = tokenize(file_split_filtered)
+    print(file_tokenized)
+    

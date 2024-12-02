@@ -1,14 +1,27 @@
 # Chapter 1
 
-### Compiler Driver
-Working on the compilerDriver
+## Compiler Driver
 
-### Lexor
+Compiler Driver , calls the preprocessor, comiler, assembler and linker
 
-### Parser
+```cmd
 
-### Assembly generation
+python3 my_compiler.py <input_file> [--lex | --parse |--codegen]
 
-### Code emission
+```
 
+Checks if the input file is valid
 
+Has three special cases that work with the given `./test_compiler` program from the book:
+
+- `--lex`: Directs it to run the lexer, but stop before parsing.
+- `--parse`: Directs it to run the lexer and parser, but stops before assembly generation.
+- `--codegen`: Directs it to run the lexer, parser, and assembly generation, but stops before code emission.
+
+## Lexer
+
+## Parser
+
+## Assembly generation
+
+## Code emission
