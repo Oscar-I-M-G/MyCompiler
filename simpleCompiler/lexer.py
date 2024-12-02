@@ -22,7 +22,7 @@ def lookup(s, tokens):
     for pattern, value in tokens:
         match = re.match(pattern, s)
         if match:
-            print(f"-----Found-----{value}")
+            ##print(f"-----Found-----{value}")
             if longest_match is None or len(match.group(0)) > len(longest_match.group(0)):
                 longest_match = match
                 longest_value = value
@@ -56,6 +56,15 @@ def split_by_delimeters(file):
     return split_string
 
 ## Tokenize
+def tokenize(filtered_file,tokens):
+    tokenized_file = []
+    for line in filtered_file:
+        tokenized_line = []
+        for item in line:
+            tokenized_item = lookup(item,tokens)
+            tokenized_line.append(tokenized_item)
+        tokenized_file.append(tokenized_line)
+    return tokenized_file 
 
 '''
 while input isn't empty:
@@ -69,10 +78,13 @@ while input isn't empty:
 '''
 
 
-print(lookup("inter}",TOKENS))
+##print(lookup("inter}",TOKENS))
 
 file_opened = read_file(file_location)
 
 print(file_opened)
-print(split_by_delimeters(file_opened))
+file_filtered = split_by_delimeters(file_opened)
+print(file_filtered)
+file_tokenized = tokenize(file_filtered, TOKENS)
+print(file_tokenized)
 
