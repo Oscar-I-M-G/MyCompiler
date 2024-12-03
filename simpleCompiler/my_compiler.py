@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import sys
 import os
 import lexer
@@ -20,8 +21,10 @@ def is_valid_file(file_path):
     return True
 
 def stop_at_lexer(file):
-    lexer.main(file)
-    
+    flag = lexer.main(file)
+    if not flag:
+        sys.exit(1)
+
 
 def stop_at_parser(file):
     stop_at_lexer(file)
@@ -43,21 +46,21 @@ def special_case(selection,file):
         stop_at_codegen(file)
     else:
         print("Dont have that argument")
-        sys.exit()
+        sys.exit(1)
 
 ## main function
 def main():
     ## First Steps
     if not check_if_arg() :
-        sys.exit()
+        sys.exit(1)
     file_ = sys.argv[1]
     if not is_valid_file(file_):
-        sys.exit()
+        sys.exit(1)
     
     if len(sys.argv) == 3:
         special_case(sys.argv[2],file_)
     
-        
+    sys.exit(0)
     ## Select What to run if specified
 if __name__ == "__main__":
     main()

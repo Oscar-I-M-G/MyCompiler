@@ -26,8 +26,11 @@ def lookup(s):
             if longest_match is None or len(match.group(0)) > len(longest_match.group(0)):
                 longest_match = match
                 longest_value = value
-            
-    return longest_value if longest_match else 'Error not found'
+    if longest_match:
+        return longest_value
+    else:
+        print("Error lexer my man")
+        return False
 
 
 def read_file(file_path):
@@ -61,6 +64,8 @@ def tokenize(filtered_file):
         tokenized_line = []
         for item in line:
             tokenized_item = lookup(item)
+            if not tokenized_item:
+                return False
             tokenized_line.append(tokenized_item)
         tokenized_file.append(tokenized_line)
     return tokenized_file 
@@ -80,5 +85,7 @@ def main(file):
     file_lines = read_file(file)
     file_split_filtered = split_by_delimeters(file_lines)
     file_tokenized = tokenize(file_split_filtered)
+    if file_tokenized is False:
+        return False
     print(file_tokenized)
-    
+    return True
