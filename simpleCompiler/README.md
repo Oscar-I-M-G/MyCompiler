@@ -22,6 +22,10 @@ Has three special cases that work with the given `./test_compiler` program from 
 
 ## Parser
 
+Input: It will recieve a list from the lexer.
+
+Output: It will generate a tree representation called abstract syntax tree (AST)
+
 ## Assembly generation
 
 ## Code emission
