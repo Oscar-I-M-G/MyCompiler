@@ -12,6 +12,23 @@ exp = Constant(int)
 
 """
 
+class Program:
+    def __init__(self, function_definition):
+        self.function_definition = function_definition
+
+class Function:
+    def __init__(self,identifier_name, statement_body):
+        self.identifier_name = identifier_name
+        self.statement_body = statement_body
+
+class Return:
+    def __init__(self,exp):
+        self.exp = exp
+
+class Constant:
+    def __init__(self,integer):
+        self.integer = integer
+    
 
 
 
